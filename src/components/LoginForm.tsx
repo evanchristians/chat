@@ -19,7 +19,16 @@ const LoginForm: React.FC = () => {
 
   const [login] = useLoginMutation({});
   return (
-    <Box bg="gray.100" p={8} w={400} borderRadius={20}>
+    <Box
+      bg="gray.100"
+      p={8}
+      w={400}
+      borderRadius={4}
+      boxShadow="0 1rem 1rem #0f0f0f04"
+    >
+      <Text fontSize={24} mb={6}>
+        Login
+      </Text>
       <Formik
         initialValues={{
           username: "",

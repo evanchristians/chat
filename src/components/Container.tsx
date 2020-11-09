@@ -1,4 +1,5 @@
 import { Flex, FlexProps } from "@chakra-ui/core";
+import React from "react";
 
 export const Container = (props: FlexProps) => {
   return (
@@ -6,7 +7,9 @@ export const Container = (props: FlexProps) => {
       direction="column"
       alignItems="center"
       justifyContent="center"
+      position="relative"
       minHeight="100vh"
+      bg="gray.400"
       {...props}
     />
   );
