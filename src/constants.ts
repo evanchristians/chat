@@ -1,4 +1,4 @@
-export const IS_PROD = process.env.NEXT_PUBLIC_ENV === "production";
+export const IS_PROD = process.env.ENV === "production";
 // export const IS_PROD = true;
 export const WS_URI = IS_PROD
   ? "wss://gql-sub.herokuapp.com/subscriptions"
