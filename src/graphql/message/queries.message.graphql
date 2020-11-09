@@ -1,0 +1,11 @@
+
+
+query Messages {
+  messages {
+    id
+    text
+    sender
+    createdAt
+  }
+}
+

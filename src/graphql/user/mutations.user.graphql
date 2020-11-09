@@ -1,0 +1,25 @@
+mutation Register($username: String!, $password: String!) {
+  register(data: { username: $username, password: $password }) {
+    user {
+      id
+      username
+    }
+    errors {
+      field
+      message
+    }
+  }
+}
+
+mutation Login($username: String!, $password: String!) {
+  login(data: { username: $username, password: $password }) {
+    user {
+      id
+      username
+    }
+    errors {
+      field
+      message
+    }
+  }
+}

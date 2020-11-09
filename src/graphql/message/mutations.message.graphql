@@ -1,0 +1,7 @@
+
+mutation SendMessage($text: String!, $sender: String!) {
+  sendMessage(data: { text: $text, sender: $sender }) {
+    text
+    sender
+  }
+}
