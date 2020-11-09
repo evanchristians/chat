@@ -1,3 +1,5 @@
-export const env = {
-  ENV: process.env.ENV,
+module.exports = {
+  env: {
+    ENV: process.env.ENV,
+  },
 };
