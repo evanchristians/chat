@@ -60,8 +60,12 @@ const RegisterForm: React.FC = () => {
         {({ isSubmitting }) => (
           <Form>
             <InputField label="Username" name="username" />
-            <InputField label="Password" name="password" />
-            <InputField label="Confirm Password" name="confirmPassword" />
+            <InputField label="Password" name="password" type="password" />
+            <InputField
+              label="Confirm Password"
+              name="confirmPassword"
+              type="password"
+            />
             <Text textAlign="center" my={6}>
               Already have an account?{" "}
               <NextLink href="/login">

@@ -23,3 +23,7 @@ mutation Login($username: String!, $password: String!) {
     }
   }
 }
+
+mutation RemoveUsers {
+  removeUsers
+}

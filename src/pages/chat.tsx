@@ -1,4 +1,4 @@
-import { Box, Flex, Input, Text } from "@chakra-ui/core";
+import { Box, CircularProgress, Flex, Input, Text } from "@chakra-ui/core";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import ScrollableFeed from "react-scrollable-feed";
@@ -9,6 +9,7 @@ import {
   useSendMessageMutation,
 } from "../generated/types.d";
 import { useRouter } from "next/router";
+import { CheckIcon } from "@chakra-ui/icons";
 
 const Chat: React.FC = () => {
   const router = useRouter();
@@ -74,21 +75,28 @@ const Chat: React.FC = () => {
                     <Text>
                       {message?.sender}: {message?.text}
                     </Text>
-                    <Text ml="auto">
+                    <Flex ml="auto" alignItems="center">
+                      <CheckIcon fontSize={12} mr={3} color="teal.500"/>
                       {moment(message?.createdAt).format("hh:mm A")}
-                    </Text>
+                    </Flex>
                   </Flex>
                 ))
               : null}
             {unsentMessages
               ? unsentMessages?.map((message: any, key) => (
-                  <Flex my={2} p={2} key={key} opacity="0.25">
+                  <Flex my={2} p={2} key={key}>
                     <Text>
                       {message?.sender}: {message?.text}
                     </Text>
-                    <Text ml="auto">
-                      {moment(message?.createdAt).format("hh:mm A")}
-                    </Text>
+                    <Flex ml="auto" alignItems="center">
+                      <CircularProgress
+                        color="gray.500"
+                        mr={3}
+                        size={3}
+                        isIndeterminate
+                      />
+                      {moment().format("hh:mm A")}
+                    </Flex>
                   </Flex>
                 ))
               : null}

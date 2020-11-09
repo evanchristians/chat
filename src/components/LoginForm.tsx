@@ -59,7 +59,7 @@ const LoginForm: React.FC = () => {
             <InputField label="Password" name="password" type="password" />
             <Text textAlign="center" my={6}>
               Don't have an account?{" "}
-              <NextLink href="/login">
+              <NextLink href="/">
                 <Link color="green.500">Register</Link>
               </NextLink>
             </Text>

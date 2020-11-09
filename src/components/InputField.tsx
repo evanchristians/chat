@@ -31,7 +31,7 @@ export const InputField: React.FC<InputFieldProps> = ({
           <FormErrorIcon color="red.500"></FormErrorIcon>
         </InputRightElement>
       </InputGroup>
-      <Flex justifyContent="center" mb={6}>
+      <Flex justifyContent="center" height={10}>
         <FormErrorMessage fontSize={14}>{error}</FormErrorMessage>
       </Flex>
     </FormControl>

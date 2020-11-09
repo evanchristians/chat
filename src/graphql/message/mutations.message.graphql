@@ -5,3 +5,7 @@ mutation SendMessage($text: String!, $sender: String!) {
     sender
   }
 }
+
+mutation RemoveMessages {
+  removeMessages
+}

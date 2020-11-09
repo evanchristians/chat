@@ -127,6 +127,14 @@ export type SendMessageMutation = (
   ) }
 );
 
+export type RemoveMessagesMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RemoveMessagesMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'removeMessages'>
+);
+
 export type MessagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -189,6 +197,14 @@ export type LoginMutation = (
   ) }
 );
 
+export type RemoveUsersMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RemoveUsersMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'removeUsers'>
+);
+
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -235,6 +251,35 @@ export function useSendMessageMutation(baseOptions: Apollo.MutationHookOptions<S
 export type SendMessageMutationHookResult = ReturnType<typeof useSendMessageMutation>;
 export type SendMessageMutationResult = Apollo.MutationResult<SendMessageMutation>;
 export type SendMessageMutationOptions = Apollo.BaseMutationOptions<SendMessageMutation, SendMessageMutationVariables>;
+export const RemoveMessagesDocument = gql`
+    mutation RemoveMessages {
+  removeMessages
+}
+    `;
+export type RemoveMessagesMutationFn = Apollo.MutationFunction<RemoveMessagesMutation, RemoveMessagesMutationVariables>;
+
+/**
+ * __useRemoveMessagesMutation__
+ *
+ * To run a mutation, you first call `useRemoveMessagesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveMessagesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeMessagesMutation, { data, loading, error }] = useRemoveMessagesMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useRemoveMessagesMutation(baseOptions?: Apollo.MutationHookOptions<RemoveMessagesMutation, RemoveMessagesMutationVariables>) {
+        return Apollo.useMutation<RemoveMessagesMutation, RemoveMessagesMutationVariables>(RemoveMessagesDocument, baseOptions);
+      }
+export type RemoveMessagesMutationHookResult = ReturnType<typeof useRemoveMessagesMutation>;
+export type RemoveMessagesMutationResult = Apollo.MutationResult<RemoveMessagesMutation>;
+export type RemoveMessagesMutationOptions = Apollo.BaseMutationOptions<RemoveMessagesMutation, RemoveMessagesMutationVariables>;
 export const MessagesDocument = gql`
     query Messages {
   messages {
@@ -381,6 +426,35 @@ export function useLoginMutation(baseOptions: Apollo.MutationHookOptions<LoginMu
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const RemoveUsersDocument = gql`
+    mutation RemoveUsers {
+  removeUsers
+}
+    `;
+export type RemoveUsersMutationFn = Apollo.MutationFunction<RemoveUsersMutation, RemoveUsersMutationVariables>;
+
+/**
+ * __useRemoveUsersMutation__
+ *
+ * To run a mutation, you first call `useRemoveUsersMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveUsersMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeUsersMutation, { data, loading, error }] = useRemoveUsersMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useRemoveUsersMutation(baseOptions?: Apollo.MutationHookOptions<RemoveUsersMutation, RemoveUsersMutationVariables>) {
+        return Apollo.useMutation<RemoveUsersMutation, RemoveUsersMutationVariables>(RemoveUsersDocument, baseOptions);
+      }
+export type RemoveUsersMutationHookResult = ReturnType<typeof useRemoveUsersMutation>;
+export type RemoveUsersMutationResult = Apollo.MutationResult<RemoveUsersMutation>;
+export type RemoveUsersMutationOptions = Apollo.BaseMutationOptions<RemoveUsersMutation, RemoveUsersMutationVariables>;
 export const MeDocument = gql`
     query Me {
   me {
