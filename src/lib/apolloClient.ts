@@ -1,15 +1,16 @@
 import { ApolloClient, HttpLink, InMemoryCache, split } from "@apollo/client";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
+import { HTTP_URI, WS_URI } from "../constants";
 
 const httpLink = new HttpLink({
-  uri: "https://gql-sub.herokuapp.com/graphql",
+  uri: HTTP_URI,
   credentials: "include",
 });
 
 const wsLink = process.browser
   ? new WebSocketLink({
-      uri: "ws://gql-sub.herokuapp.com/subscriptions",
+      uri: WS_URI,
       options: {
         reconnect: true,
       },
