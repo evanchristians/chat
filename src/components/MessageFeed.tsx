@@ -19,10 +19,10 @@ const MessageFeed: React.FC<MessageFeedProps> = ({
 }) => {
   return (
     <ScrollableFeed>
-      <Box p={6} >
+      <Box p={6}>
         {messages
           ? messages?.map((message: any) => {
-              return me?.me?.username === message.sender ? (
+              return me?.me?.user?.username === message.sender ? (
                 <Flex my={2} p={2} key={message?.id}>
                   <Box>
                     <Tag variant="solid" mb={2} colorScheme="teal">
@@ -56,9 +56,9 @@ const MessageFeed: React.FC<MessageFeedProps> = ({
             })
           : null}
         {unsentMessages
-          ? unsentMessages?.map((message: any) => {
-              return me?.me?.username === message.sender ? (
-                <Flex my={2} p={2} key={message?.id}>
+          ? unsentMessages?.map((message: any, key) => {
+              return me?.me?.user?.username === message.sender ? (
+                <Flex my={2} p={2} key={key}>
                   <Box>
                     <Tag variant="solid" mb={2} colorScheme="teal">
                       {message?.sender}
@@ -78,7 +78,7 @@ const MessageFeed: React.FC<MessageFeedProps> = ({
                   </Flex>
                 </Flex>
               ) : (
-                <Flex my={2} p={2} key={message?.id}>
+                <Flex my={2} p={2} key={key}>
                   <Box>
                     <Tag variant="solid" mb={2}>
                       {message?.sender}

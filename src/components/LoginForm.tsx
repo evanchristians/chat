@@ -46,7 +46,7 @@ const LoginForm: React.FC = () => {
                 query: MeDocument,
                 data: {
                   __typename: "Query",
-                  me: response.data?.login.user,
+                  me: { user: response.data?.login.user },
                 },
               });
             },

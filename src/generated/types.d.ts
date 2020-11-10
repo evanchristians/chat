@@ -17,7 +17,7 @@ export type Query = {
   __typename?: 'Query';
   messages: Array<Message>;
   getUsers: Array<User>;
-  me?: Maybe<User>;
+  me?: Maybe<UserResponse>;
   getUser: User;
 };
 
@@ -42,6 +42,19 @@ export type User = {
   username: Scalars['String'];
   password: Scalars['String'];
   active: Scalars['Boolean'];
+  count: Scalars['Float'];
+};
+
+export type UserResponse = {
+  __typename?: 'UserResponse';
+  user?: Maybe<User>;
+  errors?: Maybe<Array<FieldError>>;
+};
+
+export type FieldError = {
+  __typename?: 'FieldError';
+  field: Scalars['String'];
+  message: Scalars['String'];
 };
 
 export type Mutation = {
@@ -78,18 +91,6 @@ export type MutationLoginArgs = {
 export type SendMessageInput = {
   sender: Scalars['String'];
   text: Scalars['String'];
-};
-
-export type UserResponse = {
-  __typename?: 'UserResponse';
-  user?: Maybe<User>;
-  errors?: Maybe<Array<FieldError>>;
-};
-
-export type FieldError = {
-  __typename?: 'FieldError';
-  field: Scalars['String'];
-  message: Scalars['String'];
 };
 
 export type RegisterInput = {
@@ -211,8 +212,11 @@ export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 export type MeQuery = (
   { __typename?: 'Query' }
   & { me?: Maybe<(
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'username'>
+    { __typename?: 'UserResponse' }
+    & { user?: Maybe<(
+      { __typename?: 'User' }
+      & Pick<User, 'id' | 'username'>
+    )> }
   )> }
 );
 
@@ -458,8 +462,10 @@ export type RemoveUsersMutationOptions = Apollo.BaseMutationOptions<RemoveUsersM
 export const MeDocument = gql`
     query Me {
   me {
-    id
-    username
+    user {
+      id
+      username
+    }
   }
 }
     `;

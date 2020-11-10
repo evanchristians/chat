@@ -20,9 +20,9 @@ const Chat: React.FC = () => {
   const [unsentMessages, setUnsentMessages] = useState<
     { sender: string; text: string; createdAt: string }[]
   >([]);
-  const { data: me, loading: loadingMe } = useMeQuery();
+  const { data: meData, loading: loadingMeData } = useMeQuery();
 
-  if (!me && !loadingMe) router.push("/login");
+  if (!meData && !loadingMeData) router.push("/login");
 
   useEffect(() => {
     if (data?.messages) {
@@ -40,7 +40,7 @@ const Chat: React.FC = () => {
   }, [newMessage]);
 
   const emitMessage = async (input: string) => {
-    const sender = me?.me?.username;
+    const sender = meData?.me?.user?.username;
 
     if (sender) {
       setUnsentMessages([
@@ -75,7 +75,7 @@ const Chat: React.FC = () => {
           boxShadow="0 1rem 1rem #0f0f0f04"
         >
           <MessageFeed
-            me={me}
+            me={meData}
             unsentMessages={unsentMessages}
             messages={messages}
           />
@@ -89,7 +89,7 @@ const Chat: React.FC = () => {
               value={messageInput}
               bg="white"
               _focus={{
-                outline: "none"
+                outline: "none",
               }}
               onKeyPress={(event) => {
                 if (

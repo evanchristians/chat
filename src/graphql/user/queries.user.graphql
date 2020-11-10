@@ -1,6 +1,8 @@
 query Me {
   me {
-    id
-    username
+    user {
+      id
+      username
+    }
   }
 }

@@ -3,7 +3,7 @@ import React from "react";
 import { useMeQuery } from "../generated/types.d";
 
 export const LogoutButton: React.FC = () => {
-  const { data, loading } = useMeQuery();
+  const { data, loading } = useMeQuery({});
 
   if (!data && !loading) return null;
   return (
