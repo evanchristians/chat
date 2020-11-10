@@ -15,14 +15,17 @@ const Chat: React.FC = () => {
   const { data } = useMessagesQuery();
   const { data: newMessage } = useNewMessageSubscription();
   const [messages, setMessages] = useState<any>();
-  const [messageInput, setMessageInput] = useState("");
   const [sendMessage] = useSendMessageMutation({});
   const [unsentMessages, setUnsentMessages] = useState<
     { sender: string; text: string; createdAt: string }[]
   >([]);
   const { data: meData, loading: loadingMeData } = useMeQuery();
 
-  if (!meData && !loadingMeData) router.push("/login");
+  useEffect(() => {
+    if (!meData?.me?.user && !loadingMeData) {
+      router.push("/login");
+    }
+  }, [meData]);
 
   useEffect(() => {
     if (data?.messages) {
@@ -68,11 +71,12 @@ const Chat: React.FC = () => {
       >
         <Box
           maxHeight="100%"
+          height="100%"
           bg="gray.200"
           pb={20}
           borderRadius={4}
           overflow="hidden"
-          boxShadow="0 1rem 1rem #0f0f0f04"
+          boxShadow="0 2px 2px #0f0f0f04"
         >
           <MessageFeed
             me={meData}
@@ -81,24 +85,21 @@ const Chat: React.FC = () => {
           />
           <Flex px={4} height={20} alignItems="center">
             <Input
-              onChange={(event) => {
-                setMessageInput(event.target.value);
-              }}
               placeholder="Type a message"
               size="lg"
-              value={messageInput}
               bg="white"
               _focus={{
                 outline: "none",
               }}
               onKeyPress={(event) => {
+                const value = event.currentTarget.value
                 if (
                   event.key === "Enter" &&
-                  messageInput.trim().length > 0 &&
+                  value.trim().length > 0 &&
                   unsentMessages.length === 0
                 ) {
-                  emitMessage(messageInput);
-                  setMessageInput("");
+                  emitMessage(event.currentTarget.value);
+                  event.currentTarget.value = "";
                 }
               }}
             />

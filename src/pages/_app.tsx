@@ -4,7 +4,7 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 import React from "react";
 import { Container } from "../components/Container";
-// import { LogoutButton } from "../components/LogoutButton";
+import { LogoutButton } from "../components/LogoutButton";
 import apolloClient from "../lib/apolloClient";
 import theme from "../theme";
 
@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           />
         </Head>
         <Container>
-          {/* <LogoutButton /> */}
+          <LogoutButton />
           <Component {...pageProps} />
         </Container>
       </ChakraProvider>

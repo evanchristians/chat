@@ -27,9 +27,11 @@ const RegisterForm: React.FC = () => {
       p={8}
       w={400}
       borderRadius={4}
-      boxShadow="0 1rem 1rem #0f0f0f04"
+      boxShadow="0 2px 2px #0f0f0f04"
     >
-      <Text fontSize={24} mb={6}>Register</Text>
+      <Text fontSize={24} mb={6}>
+        Register
+      </Text>
       <Formik
         initialValues={{
           username: "",
@@ -48,7 +50,7 @@ const RegisterForm: React.FC = () => {
                 query: MeDocument,
                 data: {
                   __typename: "Query",
-                  me: response.data?.register.user,
+                  me: { user: response.data?.register.user },
                 },
               });
             },
