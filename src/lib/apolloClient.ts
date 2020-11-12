@@ -5,6 +5,7 @@ import { HTTP_URI, WS_URI } from "../constants";
 
 const httpLink = new HttpLink({
   uri: HTTP_URI,
+  credentials: "include",
 });
 
 const wsLink = process.browser
