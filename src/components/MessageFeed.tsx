@@ -3,6 +3,7 @@ import React from "react";
 import ScrollableFeed from "react-scrollable-feed";
 import { MeQuery, MessagesQuery } from "../generated/types.d";
 import { MessageBox } from "./MessageBox";
+import misc from "../styles/misc.module.css";
 
 export type UnsentMessageProps = {};
 export type MessageFeedProps = {
@@ -17,7 +18,7 @@ const MessageFeed: React.FC<MessageFeedProps> = ({
   messages,
 }) => {
   return (
-    <ScrollableFeed>
+    <ScrollableFeed className={misc.hideScroll}>
       <Box p={6}>
         {messages?.map((message: any, key) => (
           <MessageBox
