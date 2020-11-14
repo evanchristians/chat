@@ -23,10 +23,10 @@ const LoginForm: React.FC = () => {
       bg="gray.100"
       p={8}
       w={400}
-      borderRadius={4}
+      borderRadius={12}
       boxShadow="0 2px 2px #0f0f0f04"
     >
-      <Text fontSize={24} mb={6}>
+      <Text fontWeight="900" fontSize={32} mb={6} color="_purple">
         Login
       </Text>
       <Formik
@@ -65,15 +65,26 @@ const LoginForm: React.FC = () => {
         {({ isSubmitting }) => (
           <Form>
             <InputField label="Username" name="username" />
-            <InputField label="Password" name="password" type="password" />
-            <Text textAlign="center" my={6}>
+            <InputField label="Password" name="password" isPassword/>
+            <Text fontWeight="300" textAlign="center" my={6}>
               Don't have an account?{" "}
               <NextLink href="/">
-                <Link color="green.500">Register</Link>
+                <Link fontWeight="500" color="_purple">
+                  Register
+                </Link>
               </NextLink>
             </Text>
             <Flex justifyContent="center">
-              <Button bg="gray.300" type="submit" isLoading={isSubmitting}>
+              <Button
+                bg="_purple"
+                color="white"
+                type="submit"
+                isLoading={isSubmitting}
+                fontWeight="500"
+                _hover={{
+                  background: "_hoveredPurple",
+                }}
+              >
                 Login
               </Button>
             </Flex>

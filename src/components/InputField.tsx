@@ -8,27 +8,54 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/core";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useField } from "formik";
-import React, { InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes, useState } from "react";
 
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   name: string;
+  isPassword?: boolean;
 };
 
 export const InputField: React.FC<InputFieldProps> = ({
   label,
   size: undefined,
+  isPassword,
   ...props
 }) => {
   const [field, { error, touched }] = useField(props);
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <FormControl isInvalid={!!(error && touched)}>
-      <FormLabel htmlFor={field.name}>{label}</FormLabel>
+      <FormLabel fontWeight="300" htmlFor={field.name}>
+        {label}
+      </FormLabel>
       <InputGroup>
-        <Input {...field} {...props} id={field.name} bg="gray.300" />
+        <Input
+          {...field}
+          {...props}
+          id={field.name}
+          bg="gray.300"
+          type={!isPassword || showPassword ? "text" : "password"}
+        />
         <InputRightElement>
-          <FormErrorIcon color="red.500"></FormErrorIcon>
+          {isPassword ? (
+            showPassword ? (
+              <ViewIcon
+                color="_hoveredPurple"
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            ) : (
+              <ViewOffIcon
+                color="_hoveredPurple"
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            )
+          ) : (
+            <FormErrorIcon color="red.500"></FormErrorIcon>
+          )}
         </InputRightElement>
       </InputGroup>
       <Flex justifyContent="center" height={10}>

@@ -9,7 +9,7 @@ export const Container = (props: FlexProps) => {
       justifyContent="center"
       position="relative"
       minHeight="100vh"
-      bg="gray.400"
+      bg="_hoveredPurple"
       {...props}
     />
   );

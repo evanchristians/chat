@@ -13,8 +13,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ApolloProvider client={apolloClient}>
       <ChakraProvider resetCSS theme={theme}>
         <Head>
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;500;900&display=swap"
             rel="stylesheet"
           />
         </Head>

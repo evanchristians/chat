@@ -74,7 +74,7 @@ const Chat: React.FC = () => {
           height="100%"
           bg="gray.200"
           pb={20}
-          borderRadius={4}
+          borderRadius={12}
           overflow="hidden"
           boxShadow="0 2px 2px #0f0f0f04"
         >
@@ -92,7 +92,7 @@ const Chat: React.FC = () => {
                 outline: "none",
               }}
               onKeyPress={(event) => {
-                const value = event.currentTarget.value
+                const value = event.currentTarget.value;
                 if (
                   event.key === "Enter" &&
                   value.trim().length > 0 &&

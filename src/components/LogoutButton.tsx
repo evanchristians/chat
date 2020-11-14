@@ -21,6 +21,7 @@ export const LogoutButton: React.FC = () => {
   return data?.me?.user ? (
     <Box position="fixed" top={2} right={2}>
       <Button
+        fontWeight="500"
         onClick={async () => {
           setIsLoading(true);
           await logout({
