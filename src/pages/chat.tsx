@@ -1,17 +1,17 @@
 import { Box, Flex, Input } from "@chakra-ui/core";
 import moment from "moment";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import MessageFeed from "../components/MessageFeed";
 import {
-  useMeQuery,
   useMessagesQuery,
   useNewMessageSubscription,
   useSendMessageMutation,
 } from "../generated/types.d";
+import { isAuth } from "../lib/isAuth";
 
 const Chat: React.FC = () => {
-  const router = useRouter();
+  const me = isAuth();
+
   const { data } = useMessagesQuery();
   const { data: newMessage } = useNewMessageSubscription();
   const [messages, setMessages] = useState<any>();
@@ -19,13 +19,6 @@ const Chat: React.FC = () => {
   const [unsentMessages, setUnsentMessages] = useState<
     { sender: string; text: string; createdAt: string }[]
   >([]);
-  const { data: meData, loading: loadingMeData } = useMeQuery();
-
-  useEffect(() => {
-    if (!meData?.me?.user && !loadingMeData) {
-      router.push("/login");
-    }
-  }, [meData]);
 
   useEffect(() => {
     if (data?.messages) {
@@ -43,7 +36,7 @@ const Chat: React.FC = () => {
   }, [newMessage]);
 
   const emitMessage = async (input: string) => {
-    const sender = meData?.me?.user?.username;
+    const sender = me?.me.user?.username;
 
     if (sender) {
       setUnsentMessages([
@@ -79,7 +72,7 @@ const Chat: React.FC = () => {
           boxShadow="0 2px 2px #0f0f0f04"
         >
           <MessageFeed
-            me={meData}
+            me={me}
             unsentMessages={unsentMessages}
             messages={messages}
           />
@@ -111,5 +104,7 @@ const Chat: React.FC = () => {
     return null;
   }
 };
+
+// export const getStaticProps = async () => {};
 
 export default Chat;

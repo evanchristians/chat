@@ -1,5 +1,5 @@
-import { Fade, Flex, Tag, Text } from "@chakra-ui/core";
-import { CheckIcon } from "@chakra-ui/icons";
+import { Flex, Tag, Text } from "@chakra-ui/core";
+import { CheckCircleIcon } from "@chakra-ui/icons";
 import moment from "moment";
 import React from "react";
 import { Message } from "../generated/types";
@@ -41,27 +41,30 @@ export const MessageBox: React.FC<MessageProps> = ({
           <Text fontSize={15} maxWidth={400}>
             {message?.text}
           </Text>
-          <Flex ml="auto" pl={8} alignItems="center" justifyContent="flex-end">
+          <Flex
+            ml="auto"
+            mt="auto"
+            pl={4}
+            alignItems="center"
+            justifyContent="flex-end"
+          >
             {isUnsent ? (
               <>
-                <CheckIcon
-                  fontSize={12}
-                  mr={3}
-                  color="gray.700"
-                  opacity={0.2}
-                />
                 <Text fontSize={12} color="gray.500">
                   {moment().format("hh:mm A")}
                 </Text>
+                {isMine ? (
+                  <CheckCircleIcon fontSize={12} ml={2} color="gray.400" />
+                ) : null}
               </>
             ) : (
               <>
-                <Fade in={true}>
-                  <CheckIcon fontSize={12} mr={3} color="_purple" />
-                </Fade>
                 <Text fontSize={12} color="gray.500">
                   {moment(message?.createdAt).format("hh:mm A")}
                 </Text>
+                {isMine ? (
+                  <CheckCircleIcon fontSize={12} ml={2} color="green.400" />
+                ) : null}
               </>
             )}
           </Flex>
