@@ -74,6 +74,7 @@ const RegisterForm: React.FC = () => {
               label="Confirm Password"
               name="confirmPassword"
               type="password"
+              isPassword
             />
             <Text textAlign="center" my={6} fontWeight="300">
               Already have an account?{" "}
