@@ -13,8 +13,8 @@ const theme = {
   colors: {
     ...chakraTheme.colors,
     black: "#16161D",
-    _purple: "#597EFF",
-    _hoveredPurple: "#476FFF"
+    _purple: "#4E937A",
+    _hoveredPurple: "#46866E"
   },
   fonts,
   breakpoints,
